@@ -6,7 +6,8 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-
+	
+	[SWF(frameRate="60", width="1000", height="1000", backgroundColor="0xffffff")]
 	public class Game extends Sprite
 	{
 		private var _cellSize:int = 10;
@@ -23,6 +24,7 @@ package
 		private static const COLOR_OF_PLAYER:uint = 0xff0000;
 		private static const COLOR_OF_POINT_START:uint = 0xff0000;
 		private static const COLOR_OF_POINT_END:uint = 0xff0000;
+		private static const COLOR_OF_TRACE_LINE:uint = 0x0000ff;
 		//
 		public function Game()
 		{
@@ -151,6 +153,7 @@ package
 				_player.x += dx * .5;
 				_player.y += dy * .5;
 			}
+			_line.graphics.lineStyle(5,COLOR_OF_TRACE_LINE);
 			_line.graphics.lineTo(_player.x, _player.y);
 		}
 	}
