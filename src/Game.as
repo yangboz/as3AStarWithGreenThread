@@ -1,11 +1,15 @@
 package
 {
+	import com.godpaper.as3.utils.LogUtil;
+	
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	
+	import mx.logging.ILogger;
 	
 	[SWF(frameRate="60", width="1000", height="1000", backgroundColor="0xffffff")]
 	public class Game extends Sprite
@@ -25,6 +29,8 @@ package
 		private static const COLOR_OF_POINT_START:uint = 0xff0000;
 		private static const COLOR_OF_POINT_END:uint = 0xff0000;
 		private static const COLOR_OF_TRACE_LINE:uint = 0x0000ff;
+		//Logger for time calculation
+		private static const LOG:ILogger = LogUtil.getLogger(Game);
 		//
 		public function Game()
 		{
@@ -119,7 +125,10 @@ package
 		private function findPath():void
 		{
 			var astar:AStar = new AStar();
-			if(astar.findPath(_grid))
+			LOG.info("before astar running");
+			var find:Boolean = astar.findPath(_grid);
+			LOG.info("after astar running");
+			if(find)
 			{
 				_path = astar.path;
 				_index = 0;

@@ -1,5 +1,6 @@
 package
 {
+	import com.godpaper.as3.utils.LogUtil;
 	import com.lookbackon.ds.AStarNodeBoard;
 	import com.lookbackon.ds.aStar.AStar;
 	import com.lookbackon.ds.aStar.AStarNode;
@@ -10,6 +11,8 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	
+	import mx.logging.ILogger;
 	
 	[SWF(frameRate="60", width="1000", height="1000", backgroundColor="0xffffff")]
 	public class GameWithAStarGreenThread extends Sprite
@@ -30,6 +33,8 @@ package
 		private static const COLOR_OF_POINT_START:uint = 0xff0000;
 		private static const COLOR_OF_POINT_END:uint = 0xff0000;
 		private static const COLOR_OF_TRACE_LINE:uint = 0x0000ff;
+		//Logger for time calculation
+		private static const LOG:ILogger = LogUtil.getLogger(GameWithAStarGreenThread);
 		//
 		public function GameWithAStarGreenThread()
 		{
@@ -131,7 +136,9 @@ package
 //			var astar:AStar = new AStar();
 			var astar:com.lookbackon.ds.aStar.AStar = new com.lookbackon.ds.aStar.AStar();
 			astar.grid = _grid;
+			LOG.info("before astar with green thread running");
 			astar.run();
+			LOG.info("after astar with green thread running");
 //			if(astar.findPath(_grid))
 		    if(astar.path)	
 			{

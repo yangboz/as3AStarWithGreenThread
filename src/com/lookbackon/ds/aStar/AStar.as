@@ -192,6 +192,8 @@ package com.lookbackon.ds.aStar
 		//return thread calculate precentage.
 		override public function get percentage():Number
 		{
+			return processDone ? 1 : 0.10;
+			return processDone ? 1 : 0.25;
 			return processDone ? 1 : 0.33;
 		}
 		//--------------------------------------------------------------------------

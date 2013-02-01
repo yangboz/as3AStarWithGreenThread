@@ -13,8 +13,7 @@ package
 		private var _heuristic:Function = diagonal;
 		private var _straightCost:Number = 1.0;
 		private var _diagCost:Number = Math.SQRT2;
-		
-		
+		//
 		public function AStar()
 		{
 		}
