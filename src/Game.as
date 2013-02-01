@@ -1,5 +1,6 @@
 package
 {
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
@@ -13,7 +14,7 @@ package
 		private var _player:Sprite;
 		private var _index:int;
 		private var _path:Array;
-		
+		private var _line:Shape;
 		/*Constants*/
 		private static const NUM_OF_BLOCK:int = 1000;
 		private static const NUM_OF_COLS:int = 100;
@@ -30,6 +31,8 @@ package
 			
 			makePlayer();
 			makeGrid();
+			_line=new Shape();
+			addChild(_line);
 			stage.addEventListener(MouseEvent.CLICK, onGridClick);
 		}
 		
@@ -118,6 +121,9 @@ package
 			{
 				_path = astar.path;
 				_index = 0;
+				_line.graphics.clear();
+				_line.graphics.lineStyle(4,0xFFFFFF,.8);
+				_line.graphics.moveTo(_player.x, _player.y);
 				addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			}
 		}
@@ -145,6 +151,7 @@ package
 				_player.x += dx * .5;
 				_player.y += dy * .5;
 			}
+			_line.graphics.lineTo(_player.x, _player.y);
 		}
 	}
 }
