@@ -119,7 +119,9 @@ package
 			var xpos:int = Math.floor(mouseX / _cellSize);
 			var ypos:int = Math.floor(mouseY / _cellSize);
 			_grid.setEndNode(xpos, ypos);
-			
+			//avoid calculation
+			if(!_grid.getNode(xpos, ypos).walkable) return;
+			//
 			xpos = Math.floor(_player.x / _cellSize);
 			ypos = Math.floor(_player.y / _cellSize);
 			_grid.setStartNode(xpos, ypos);
