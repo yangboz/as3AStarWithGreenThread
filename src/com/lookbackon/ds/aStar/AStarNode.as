@@ -14,7 +14,7 @@ package com.lookbackon.ds.aStar {
  * @playerVersion 9.0
  * Created May 13, 2011 1:31:12 PM
  */
-public class GTAStarNode {
+public class AStarNode {
     //--------------------------------------------------------------------------
     //
     //  Variables
@@ -26,7 +26,7 @@ public class GTAStarNode {
     public var g:Number;
     public var h:Number;
     public var walkable:Boolean = true;
-    public var parent:GTAStarNode;
+    public var parent:AStarNode;
     public var costMultiplier:Number = 1.0;
     //----------------------------------
     //  CONSTANTS
@@ -49,7 +49,7 @@ public class GTAStarNode {
     //  Constructor
     //
     //--------------------------------------------------------------------------
-    public function GTAStarNode(x:int, y:int) {
+    public function AStarNode(x:int, y:int) {
         this.x = x;
         this.y = y;
     }
@@ -61,7 +61,7 @@ public class GTAStarNode {
     //--------------------------------------------------------------------------
     public function toString():String {
 //			return ObjectUtil.toString(this);
-        return "GTAStarNode->x:" + this.x + ",y:" + this.y;
+        return "AStarNode->x:" + this.x + ",y:" + this.y;
     }
 
     //--------------------------------------------------------------------------

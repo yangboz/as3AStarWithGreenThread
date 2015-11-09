@@ -1,21 +1,24 @@
+/**
+ * Created by yangboz on 11/9/15.
+ */
 package {
 import com.lookbackon.ds.aStar.AStar;
-import com.lookbackon.ds.aStar.AStarNode;
+import com.lookbackon.ds.aStar.SimpleAstarNode;
 
 import flash.display.Sprite;
 import flash.events.MouseEvent;
 
 /**
- * Serves as a visual representation of a grid of nodes used in a pathfinding solution.
+ * Serves as a visual representation of a grid of nodes used in a isometric path-finding solution.
  */
-public class GridView extends Sprite {
+public class IsometricGridView extends Sprite {
     private var _cellSize:int = 20;
-    private var _grid:Grid;
+    private var _grid:IsometricGrid;
 
     /**
      * Constructor.
      */
-    public function GridView(grid:Grid) {
+    public function IsometricGridView(grid:IsometricGrid) {
         _grid = grid;
         drawGrid();
         findPath();
@@ -29,7 +32,7 @@ public class GridView extends Sprite {
         graphics.clear();
         for (var i:int = 0; i < _grid.numCols; i++) {
             for (var j:int = 0; j < _grid.numRows; j++) {
-                var node:AStarNode = _grid.getNode(i, j);
+                var node:SimpleAstarNode = _grid.getNode(i, j);
                 graphics.lineStyle(0);
                 graphics.beginFill(getColor(node));
                 graphics.drawRect(i * _cellSize, j * _cellSize, _cellSize, _cellSize);
@@ -40,7 +43,7 @@ public class GridView extends Sprite {
     /**
      * Determines the color of a given node based on its state.
      */
-    private function getColor(node:AStarNode):uint {
+    private function getColor(node:SimpleAstarNode):uint {
         if (!node.walkable) return 0;
         if (node == _grid.startNode) return 0x666666;
         if (node == _grid.endNode) return 0x666666;

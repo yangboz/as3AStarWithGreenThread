@@ -1,7 +1,7 @@
 /**
  * Created by yangboz on 11/9/15.
  */
-package com.lookbackon.ds.isometric {
+package com.lookbackon.ds.aStar.isometric {
 import flash.geom.Point;
 
 public class IsometricHelper {

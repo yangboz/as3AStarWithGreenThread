@@ -1,5 +1,7 @@
 package {
 import com.godpaper.as3.utils.LogUtil;
+import com.lookbackon.ds.aStar.AStar;
+import com.lookbackon.ds.aStar.AStarNode;
 
 import flash.display.Shape;
 import flash.display.Sprite;
@@ -74,7 +76,7 @@ public class GameAStar extends Sprite {
         graphics.clear();
         for (var i:int = 0; i < _grid.numCols; i++) {
             for (var j:int = 0; j < _grid.numRows; j++) {
-                var node:AstarNode = _grid.getNode(i, j);
+                var node:AStarNode = _grid.getNode(i, j);
                 graphics.lineStyle(0);
                 graphics.beginFill(getColor(node));
                 graphics.drawRect(i * _cellSize, j * _cellSize, _cellSize, _cellSize);
@@ -85,7 +87,7 @@ public class GameAStar extends Sprite {
     /**
      * Determines the color of a given node based on its state.
      */
-    private function getColor(node:AstarNode):uint {
+    private function getColor(node:AStarNode):uint {
         if (!node.walkable) return 0;
         if (node == _grid.startNode) return COLOR_OF_POINT_START;
         if (node == _grid.endNode) return COLOR_OF_POINT_END;

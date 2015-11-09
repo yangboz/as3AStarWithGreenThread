@@ -1,10 +1,12 @@
 package {
+import com.lookbackon.ds.aStar.AStarNode;
+
 /**
  * Holds a two-dimensional array of Nodes methods to manipulate them, start node and end node for finding a path.
  */
 public class Grid {
-    private var _startNode:AstarNode;
-    private var _endNode:AstarNode;
+    private var _startNode:AStarNode;
+    private var _endNode:AStarNode;
     private var _nodes:Array;
     private var _numCols:int;
     private var _numRows:int;
@@ -20,7 +22,7 @@ public class Grid {
         for (var i:int = 0; i < _numCols; i++) {
             _nodes[i] = new Array();
             for (var j:int = 0; j < _numRows; j++) {
-                _nodes[i][j] = new AstarNode(i, j);
+                _nodes[i][j] = new AStarNode(i, j);
             }
         }
     }
@@ -35,8 +37,8 @@ public class Grid {
      * @param x The x coord.
      * @param y The y coord.
      */
-    public function getNode(x:int, y:int):AstarNode {
-        return _nodes[x][y] as AstarNode;
+    public function getNode(x:int, y:int):AStarNode {
+        return _nodes[x][y] as AStarNode;
     }
 
     /**
@@ -45,7 +47,7 @@ public class Grid {
      * @param y The y coord.
      */
     public function setEndNode(x:int, y:int):void {
-        _endNode = _nodes[x][y] as AstarNode;
+        _endNode = _nodes[x][y] as AStarNode;
     }
 
     /**
@@ -54,7 +56,7 @@ public class Grid {
      * @param y The y coord.
      */
     public function setStartNode(x:int, y:int):void {
-        _startNode = _nodes[x][y] as AstarNode;
+        _startNode = _nodes[x][y] as AStarNode;
     }
 
     /**
@@ -74,7 +76,7 @@ public class Grid {
     /**
      * Returns the end node.
      */
-    public function get endNode():AstarNode {
+    public function get endNode():AStarNode {
         return _endNode;
     }
 
@@ -95,7 +97,7 @@ public class Grid {
     /**
      * Returns the start node.
      */
-    public function get startNode():AstarNode {
+    public function get startNode():AStarNode {
         return _startNode;
     }
 

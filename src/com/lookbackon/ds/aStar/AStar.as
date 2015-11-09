@@ -1,10 +1,10 @@
-package {
+package com.lookbackon.ds.aStar {
 public class AStar {
     private var _open:Array;
     private var _closed:Array;
     private var _grid:Grid;
-    private var _endNode:AstarNode;
-    private var _startNode:AstarNode;
+    private var _endNode:AStarNode;
+    private var _startNode:AStarNode;
     private var _path:Array;
 //		private var _heuristic:Function = manhattan;
 //		private var _heuristic:Function = euclidian;
@@ -31,7 +31,7 @@ public class AStar {
     }
 
     public function search():Boolean {
-        var node:AstarNode = _startNode;
+        var node:AStarNode = _startNode;
         while (node != _endNode) {
             var startX:int = Math.max(0, node.x - 1);
             var endX:int = Math.min(_grid.numCols - 1, node.x + 1);
@@ -40,7 +40,7 @@ public class AStar {
 
             for (var i:int = startX; i <= endX; i++) {
                 for (var j:int = startY; j <= endY; j++) {
-                    var test:AstarNode = _grid.getNode(i, j);
+                    var test:AStarNode = _grid.getNode(i, j);
                     if (test == node || !test.walkable || !_grid.getNode(node.x, test.y).walkable || !_grid.getNode(test.x, node.y).walkable) {
                         continue;
                     }
@@ -77,7 +77,7 @@ public class AStar {
                 return false
             }
             _open.sortOn("f", Array.NUMERIC);
-            node = _open.shift() as AstarNode;
+            node = _open.shift() as AStarNode;
         }
         buildPath();
         return true;
@@ -85,7 +85,7 @@ public class AStar {
 
     private function buildPath():void {
         _path = new Array();
-        var node:AstarNode = _endNode;
+        var node:AStarNode = _endNode;
         _path.push(node);
         while (node != _startNode) {
             node = node.parent;
@@ -97,7 +97,7 @@ public class AStar {
         return _path;
     }
 
-    private function isOpen(node:AstarNode):Boolean {
+    private function isOpen(node:AStarNode):Boolean {
         for (var i:int = 0; i < _open.length; i++) {
             if (_open[i] == node) {
                 return true;
@@ -106,7 +106,7 @@ public class AStar {
         return false;
     }
 
-    private function isClosed(node:AstarNode):Boolean {
+    private function isClosed(node:AStarNode):Boolean {
         for (var i:int = 0; i < _closed.length; i++) {
             if (_closed[i] == node) {
                 return true;
@@ -115,17 +115,17 @@ public class AStar {
         return false;
     }
 
-    private function manhattan(node:AstarNode):Number {
+    private function manhattan(node:AStarNode):Number {
         return Math.abs(node.x - _endNode.x) * _straightCost + Math.abs(node.y + _endNode.y) * _straightCost;
     }
 
-    private function euclidian(node:AstarNode):Number {
+    private function euclidian(node:AStarNode):Number {
         var dx:Number = node.x - _endNode.x;
         var dy:Number = node.y - _endNode.y;
         return Math.sqrt(dx * dx + dy * dy) * _straightCost;
     }
 
-    private function diagonal(node:AstarNode):Number {
+    private function diagonal(node:AStarNode):Number {
         var dx:Number = Math.abs(node.x - _endNode.x);
         var dy:Number = Math.abs(node.y - _endNode.y);
         var diag:Number = Math.min(dx, dy);

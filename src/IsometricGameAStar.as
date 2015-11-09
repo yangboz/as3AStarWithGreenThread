@@ -1,8 +1,7 @@
 package {
 import com.godpaper.as3.utils.LogUtil;
+import com.lookbackon.ds.aStar.AStar;
 import com.lookbackon.ds.aStar.AStarNode;
-import com.lookbackon.ds.aStar.AStarNodeBoard;
-import com.lookbackon.ds.aStar.GTAStar;
 
 import flash.display.Shape;
 import flash.display.Sprite;
@@ -14,10 +13,9 @@ import flash.events.MouseEvent;
 import mx.logging.ILogger;
 
 [SWF(frameRate="60", width="1000", height="1000", backgroundColor="0xffffff")]
-public class GameGTAstar extends Sprite {
+public class IsometricGameAStar extends Sprite {
     private var _cellSize:int = 10;
-//		private var _grid:Grid;
-    private var _grid:AStarNodeBoard;
+    private var _grid:Grid;
     private var _player:Sprite;
     private var _index:int;
     private var _path:Array;
@@ -32,9 +30,9 @@ public class GameGTAstar extends Sprite {
     private static const COLOR_OF_POINT_END:uint = 0xff0000;
     private static const COLOR_OF_TRACE_LINE:uint = 0x0000ff;
     //Logger for time calculation
-    private static const LOG:ILogger = LogUtil.getLogger(GameGTAstar);
+    private static const LOG:ILogger = LogUtil.getLogger(GameAStar);
     //
-    public function GameGTAstar() {
+    public function IsometricGameAStar() {
         stage.align = StageAlign.TOP_LEFT;
         stage.scaleMode = StageScaleMode.NO_SCALE;
 
@@ -62,8 +60,7 @@ public class GameGTAstar extends Sprite {
      * Creates a grid with a bunch of random unwalkable nodes.
      */
     private function makeGrid():void {
-//			_grid = new Grid(NUM_OF_COLS, NUM_OF_ROWS);
-        _grid = new AStarNodeBoard(NUM_OF_COLS, NUM_OF_ROWS);
+        _grid = new IsometricGrid(NUM_OF_COLS, NUM_OF_ROWS);
         for (var i:int = 0; i < NUM_OF_BLOCK; i++) {
             _grid.setWalkable(Math.floor(Math.random() * 100),
                     Math.floor(Math.random() * 100),
@@ -77,11 +74,8 @@ public class GameGTAstar extends Sprite {
      */
     private function drawGrid():void {
         graphics.clear();
-//			for(var i:int = 0; i < _grid.numCols; i++)
-        for (var i:int = 0; i < _grid.column; i++) {
-//				for(var j:int = 0; j < _grid.numRows; j++)
-            for (var j:int = 0; j < _grid.row; j++) {
-//					var node:SimpleAstarNode = _grid.getNode(i, j);
+        for (var i:int = 0; i < _grid.numCols; i++) {
+            for (var j:int = 0; j < _grid.numRows; j++) {
                 var node:AStarNode = _grid.getNode(i, j);
                 graphics.lineStyle(0);
                 graphics.beginFill(getColor(node));
@@ -93,7 +87,6 @@ public class GameGTAstar extends Sprite {
     /**
      * Determines the color of a given node based on its state.
      */
-//		private function getColor(node:SimpleAstarNode):uint
     private function getColor(node:AStarNode):uint {
         if (!node.walkable) return 0;
         if (node == _grid.startNode) return COLOR_OF_POINT_START;
@@ -107,10 +100,11 @@ public class GameGTAstar extends Sprite {
     private function onGridClick(event:MouseEvent):void {
         var xpos:int = Math.floor(mouseX / _cellSize);
         var ypos:int = Math.floor(mouseY / _cellSize);
-        _grid.setEndNode(xpos, ypos);
         //avoid calculation
         if (!_grid.getNode(xpos, ypos).walkable) return;
         //
+        _grid.setEndNode(xpos, ypos);
+
         xpos = Math.floor(_player.x / _cellSize);
         ypos = Math.floor(_player.y / _cellSize);
         _grid.setStartNode(xpos, ypos);
@@ -123,14 +117,11 @@ public class GameGTAstar extends Sprite {
      * Creates an instance of GTAStar and uses it to find a path.
      */
     private function findPath():void {
-//			var astar:GTAStar = new GTAStar();
-        var astar:GTAStar = new GTAStar();
-        astar.grid = _grid;
-        LOG.info("before astar with green thread running");
-        astar.run();
-        LOG.info("after astar with green thread running");
-//			if(astar.findPath(_grid))
-        if (astar.path) {
+        var astar:AStar = new AStar();
+        LOG.info("before astar running");
+        var find:Boolean = astar.findPath(_grid);
+        LOG.info("after astar running");
+        if (find) {
             _path = astar.path;
             _index = 0;
             _line.graphics.clear();

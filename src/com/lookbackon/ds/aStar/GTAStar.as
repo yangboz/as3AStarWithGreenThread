@@ -1,6 +1,4 @@
 package com.lookbackon.ds.aStar {
-import com.lookbackon.ds.AStarNodeBoard;
-
 import org.generalrelativity.thread.process.AbstractProcess;
 
 //--------------------------------------------------------------------------
@@ -31,8 +29,8 @@ public class GTAStar extends AbstractProcess {
     private var _open:Array;
     private var _closed:Array;
     private var _grid:AStarNodeBoard;
-    private var _endNode:GTAStarNode;
-    private var _startNode:GTAStarNode;
+    private var _endNode:AStarNode;
+    private var _startNode:AStarNode;
     private var _path:Array;
     //		private var _heuristic:Function = manhattan;
     private var _heuristic:Function = euclidian;
@@ -131,11 +129,11 @@ public class GTAStar extends AbstractProcess {
     /**
      * The standard heuristic for a square grid is the Manhattan distance.
      * On a square grid that allows 4 directions of movement, use Manhattan distance (L1).
-     * @param node GTAStarNode carried some node info.
+     * @param node AStarNode carried some node info.
      * @return Manhattan distance
      * @see http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
      */
-    public function manhattan(node:GTAStarNode):Number {
+    public function manhattan(node:AStarNode):Number {
         return Math.abs(node.x - _endNode.x) * _straightCost + Math.abs(node.y + _endNode.y) * _straightCost;
     }
 
@@ -144,11 +142,11 @@ public class GTAStar extends AbstractProcess {
      * The standard heuristic for a square grid is the Euclidean distance.
      * On a square grid that allows any direction of movement, you might or might not want Euclidean distance (L2).
      * If A* is finding paths on the grid but you are allowing movement not on the grid, you may want to consider other representations of the map.
-     * @param node GTAStarNode carried some node info.
+     * @param node AStarNode carried some node info.
      * @return Euclidean distance
      * @see http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
      */
-    public function euclidian(node:GTAStarNode):Number {
+    public function euclidian(node:AStarNode):Number {
         var dx:Number = node.x - _endNode.x;
         var dy:Number = node.y - _endNode.y;
         return Math.sqrt(dx * dx + dy * dy) * _straightCost;
@@ -158,11 +156,11 @@ public class GTAStar extends AbstractProcess {
     /**
      * The standard heuristic for a square grid is the Diagonal distance.
      * On a square grid that allows 8 directions of movement, use Diagonal distance (L∞).
-     * @param node GTAStarNode carried some node info.
+     * @param node AStarNode carried some node info.
      * @return Diagonal distance
      * @see http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
      */
-    public function diagonal(node:GTAStarNode):Number {
+    public function diagonal(node:AStarNode):Number {
         var dx:Number = Math.abs(node.x - _endNode.x);
         var dy:Number = Math.abs(node.y - _endNode.y);
         var diag:Number = Math.min(dx, dy);
@@ -207,7 +205,7 @@ public class GTAStar extends AbstractProcess {
     //--------------------------------------------------------------------------
     //
     private function search():Boolean {
-        var node:GTAStarNode = _startNode;
+        var node:AStarNode = _startNode;
         while (node != _endNode) {
             var startX:int = Math.max(0, node.x - 1);
             var endX:int = Math.min(_grid.column - 1, node.x + 1);
@@ -216,7 +214,7 @@ public class GTAStar extends AbstractProcess {
 
             for (var i:int = startX; i <= endX; i++) {
                 for (var j:int = startY; j <= endY; j++) {
-                    var test:GTAStarNode = _grid.getNode(i, j);
+                    var test:AStarNode = _grid.getNode(i, j);
                     if (test == node || !test.walkable || !_grid.getNode(node.x, test.y).walkable || !_grid.getNode(test.x, node.y).walkable) {
                         continue;
                     }
@@ -254,7 +252,7 @@ public class GTAStar extends AbstractProcess {
                 return false;
             }
             _open.sortOn("f", Array.NUMERIC);
-            node = _open.shift() as GTAStarNode;
+            node = _open.shift() as AStarNode;
         }
         //
         buildPath();
@@ -265,7 +263,7 @@ public class GTAStar extends AbstractProcess {
     //
     private function buildPath():void {
         _path = new Array();
-        var node:GTAStarNode = _endNode;
+        var node:AStarNode = _endNode;
         _path.push(node);
         while (node != _startNode) {
             node = node.parent;
@@ -274,7 +272,7 @@ public class GTAStar extends AbstractProcess {
     }
 
     //
-    private function isOpen(node:GTAStarNode):Boolean {
+    private function isOpen(node:AStarNode):Boolean {
         for (var i:int = 0; i < _open.length; i++) {
             if (_open[i] == node) {
                 return true;
@@ -284,7 +282,7 @@ public class GTAStar extends AbstractProcess {
     }
 
     //
-    private function isClosed(node:GTAStarNode):Boolean {
+    private function isClosed(node:AStarNode):Boolean {
         for (var i:int = 0; i < _closed.length; i++) {
             if (_closed[i] == node) {
                 return true;

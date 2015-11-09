@@ -1,4 +1,6 @@
 package astar {
+import com.lookbackon.ds.aStar.AStar;
+
 import org.flexunit.Assert;
 
 public class AStarTest {
