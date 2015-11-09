@@ -1,4 +1,4 @@
-package tests {
+package astar {
 import org.flexunit.Assert;
 
 public class AStarTest {
