@@ -7,7 +7,6 @@ import com.senocular.utils.KeyObject;
 
 import flash.display.Bitmap;
 import flash.display.BitmapData;
-import flash.display.DisplayObject;
 import flash.display.MovieClip;
 import flash.display.Sprite;
 import flash.events.Event;
@@ -24,20 +23,8 @@ public class IsometricGame extends Sprite {
     }
 
     /**
-     * Creates the player sprite. Just a circle here.
+     * Static creates the virtual elements.
      */
-    private static const COLOR_OF_PLAYER:uint = 0xff0000;
-
-    private static function makePlayer():DisplayObject {
-        var _player:Sprite = new Sprite();
-        _player.graphics.beginFill(COLOR_OF_PLAYER);
-        _player.graphics.drawCircle(0, 0, 5);
-        _player.graphics.endFill();
-        _player.x = Math.random() * 600;
-        _player.y = Math.random() * 600;
-        return _player;
-//        addChild(_player);
-    }
 
     private static function makeHeroPointer(color:uint):Sprite {
         var _player:Sprite = new Sprite();
