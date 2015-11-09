@@ -2,7 +2,7 @@
 <module type="Flex" version="4">
   <component name="FlexBuildConfigurationManager" active="Game">
     <configurations>
-      <configuration name="Game" pure-as="true" main-class="Game" output-file="Game.swf" output-folder="$MODULE_DIR$/bin-debug">
+      <configuration name="Game" pure-as="true" main-class="GameAStar" output-file="Game.swf" output-folder="$MODULE_DIR$/bin-debug">
         <dependencies target-player="11.1">
           <entries>
             <entry library-id="fbec0ed8-80e5-4e1f-9ad4-f0f339873745">
@@ -20,7 +20,7 @@
         <packaging-android />
         <packaging-ios />
       </configuration>
-      <configuration name="Pathfinding" pure-as="true" main-class="Pathfinding" output-file="Pathfinding.swf" output-folder="$MODULE_DIR$/bin-debug">
+      <configuration name="Pathfinding" pure-as="true" main-class="PathfindingView" output-file="Pathfinding.swf" output-folder="$MODULE_DIR$/bin-debug">
         <dependencies target-player="11.1">
           <entries>
             <entry library-id="763286f3-6c57-4ad7-8b13-0f317fdb1f11">
@@ -38,7 +38,7 @@
         <packaging-android />
         <packaging-ios />
       </configuration>
-      <configuration name="GameWithAStarGreenThread" pure-as="true" main-class="GameWithAStarGreenThread" output-file="GameWithAStarGreenThread.swf" output-folder="$MODULE_DIR$/bin-debug">
+      <configuration name="GameWithAStarGreenThread" pure-as="true" main-class="GameGTAstar" output-file="GameWithAStarGreenThread.swf" output-folder="$MODULE_DIR$/bin-debug">
         <dependencies target-player="11.1">
           <entries>
             <entry library-id="6a130a62-6a2f-4b73-b49e-2a5b1a8e102f">
