@@ -1,157 +1,321 @@
+/**
+ * Created by yangboz on 11/9/15.
+ */
 package {
-import com.godpaper.as3.utils.LogUtil;
-import com.lookbackon.ds.aStar.AStar;
-import com.lookbackon.ds.aStar.AStarNode;
+import com.lookbackon.ds.aStar.isometric.IsometricHelper;
+import com.senocular.utils.KeyObject;
 
-import flash.display.Shape;
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.display.MovieClip;
 import flash.display.Sprite;
-import flash.display.StageAlign;
-import flash.display.StageScaleMode;
 import flash.events.Event;
-import flash.events.MouseEvent;
+import flash.geom.Matrix;
+import flash.geom.Point;
+import flash.geom.Rectangle;
+import flash.ui.Keyboard;
 
-import mx.logging.ILogger;
-
-[SWF(frameRate="60", width="1000", height="1000", backgroundColor="0xffffff")]
 public class IsometricGameAStar extends Sprite {
-    private var _cellSize:int = 10;
-    private var _grid:Grid;
-    private var _player:Sprite;
-    private var _index:int;
-    private var _path:Array;
-    private var _line:Shape;
-    /*Constants*/
-    private static const NUM_OF_BLOCK:int = 1000;
-    private static const NUM_OF_COLS:int = 100;
-    private static const NUM_OF_ROWS:int = 100;
-    private static const COLOR_OF_WALKABLE:uint = 0x00FF00;
-    private static const COLOR_OF_PLAYER:uint = 0xff0000;
-    private static const COLOR_OF_POINT_START:uint = 0xff0000;
-    private static const COLOR_OF_POINT_END:uint = 0xff0000;
-    private static const COLOR_OF_TRACE_LINE:uint = 0x0000ff;
-    //Logger for time calculation
-    private static const LOG:ILogger = LogUtil.getLogger(GameAStar);
-    //
     public function IsometricGameAStar() {
-        stage.align = StageAlign.TOP_LEFT;
-        stage.scaleMode = StageScaleMode.NO_SCALE;
-
-        makePlayer();
-        makeGrid();
-        _line = new Shape();
-        addChild(_line);
-        stage.addEventListener(MouseEvent.CLICK, onGridClick);
+        this.createLevel();
+        addChild(bg);
+//        addChild(overlayContainer);
     }
 
     /**
-     * Creates the player sprite. Just a circle here.
+     * Static creates the virtual elements.
      */
-    private function makePlayer():void {
-        _player = new Sprite();
-        _player.graphics.beginFill(COLOR_OF_PLAYER);
+
+    private static function makeHeroPointer(color:uint):Sprite {
+        var _player:Sprite = new Sprite();
+        _player.graphics.beginFill(color);
         _player.graphics.drawCircle(0, 0, 5);
         _player.graphics.endFill();
         _player.x = Math.random() * 600;
         _player.y = Math.random() * 600;
-        addChild(_player);
+        return _player;
+//        addChild(_player);
     }
 
-    /**
-     * Creates a grid with a bunch of random unwalkable nodes.
-     */
-    private function makeGrid():void {
-        _grid = new IsometricGrid(NUM_OF_COLS, NUM_OF_ROWS);
-        for (var i:int = 0; i < NUM_OF_BLOCK; i++) {
-            _grid.setWalkable(Math.floor(Math.random() * 100),
-                    Math.floor(Math.random() * 100),
-                    false);
-        }
-        drawGrid();
+    private static function makeHero(color:uint):MovieClip {
+        var _player:MovieClip = new MovieClip();
+        _player.graphics.beginFill(color);
+        _player.graphics.drawCircle(0, 0, 5);
+        _player.graphics.endFill();
+        _player.x = Math.random() * 600;
+        _player.y = Math.random() * 600;
+        return _player;
+//        addChild(_player);
     }
 
-    /**
-     * Draws the given grid, coloring each cell according to its state.
-     */
-    private function drawGrid():void {
-        graphics.clear();
-        for (var i:int = 0; i < _grid.numCols; i++) {
-            for (var j:int = 0; j < _grid.numRows; j++) {
-                var node:AStarNode = _grid.getNode(i, j);
-                graphics.lineStyle(0);
-                graphics.beginFill(getColor(node));
-                graphics.drawRect(i * _cellSize, j * _cellSize, _cellSize, _cellSize);
+    private static function makeTile(color:uint):MovieClip {
+        var _player:MovieClip = new MovieClip();
+        _player.graphics.beginFill(color);
+        _player.graphics.drawCircle(0, 0, 5);
+        _player.graphics.endFill();
+        _player.x = Math.random() * 600;
+        _player.y = Math.random() * 600;
+        return _player;
+//        addChild(_player);
+    }
+
+    // Uses senocular's KeyObject class
+// http://www.senocular.com/flash/actionscript/?file=ActionScript_3.0/com/senocular/utils/KeyObject.as
+
+    var levelData = [[1, 1, 1, 1, 1, 1],
+        [1, 0, 0, 2, 0, 1],
+        [1, 0, 1, 0, 0, 1],
+        [1, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 1],
+        [1, 1, 1, 1, 1, 1]];
+
+    var tileWidth:uint = 50;
+    var borderOffsetY:uint = 70;
+    var borderOffsetX:uint = 275;
+
+    var facing:String = "south";
+    var currentFacing:String = "south";
+//    var hero:MovieClip = new herotile();
+    var hero:MovieClip = makeHero(0xff0000);
+//    hero.clip.gotoAndStop(facing);
+    var heroPointer:Sprite;
+    var key:KeyObject = new KeyObject(stage);//Senocular KeyObject Class
+    var heroHalfSize:uint = 20;
+
+//the tiles
+//    var grassTile:MovieClip = new TileMc();
+    var grassTile:MovieClip = makeTile(0x00ff00);
+//    grassTile.gotoAndStop(1);
+//    var wallTile:MovieClip = new TileMc();
+    var wallTile:MovieClip = makeTile(0x333333);
+//    wallTile.gotoAndStop(2);
+
+//the canvas
+    var bg:Bitmap = new Bitmap(new BitmapData(650, 450));
+//    addChild(bg);
+    var rect:Rectangle = bg.bitmapData.rect;
+
+//to handle depth
+    var overlayContainer:Sprite = new Sprite();
+//    addChild(overlayContainer);
+
+//to handle direction movement
+    var dX:Number = 0;
+    var dY:Number = 0;
+    var idle:Boolean = true;
+    var speed:uint = 5;
+    var heroCartPos:Point = new Point();
+    var heroTile:Point = new Point();
+
+//add items to start level, add game loop
+    function createLevel() {
+        var tileType:uint;
+        for (var i:uint = 0; i < levelData.length; i++) {
+            for (var j:uint = 0; j < levelData[0].length; j++) {
+                tileType = levelData[i][j];
+                placeTile(tileType, i, j);
+                if (tileType == 2) {
+                    levelData[i][j] = 0;
+                }
             }
         }
+        overlayContainer.addChild(heroPointer);
+        overlayContainer.alpha = 0.5;
+        overlayContainer.scaleX = overlayContainer.scaleY = 0.5;
+        overlayContainer.y = 290;
+        overlayContainer.x = 10;
+        depthSort();
+        addEventListener(Event.ENTER_FRAME, loop);
     }
 
-    /**
-     * Determines the color of a given node based on its state.
-     */
-    private function getColor(node:AStarNode):uint {
-        if (!node.walkable) return 0;
-        if (node == _grid.startNode) return COLOR_OF_POINT_START;
-        if (node == _grid.endNode) return COLOR_OF_POINT_END;
-        return COLOR_OF_WALKABLE;
-    }
+//place the tile based on coordinates
+    function placeTile(id:uint, i:uint, j:uint) {
+        var pos:Point = new Point();
+        if (id == 2) {
 
-    /**
-     * Handles the click event on the GridView. Finds the clicked on cell and toggles its walkable state.
-     */
-    private function onGridClick(event:MouseEvent):void {
-        var xpos:int = Math.floor(mouseX / _cellSize);
-        var ypos:int = Math.floor(mouseY / _cellSize);
-        //avoid calculation
-        if (!_grid.getNode(xpos, ypos).walkable) return;
-        //
-        _grid.setEndNode(xpos, ypos);
+            id = 0;
+            pos.x = j * tileWidth;
+            pos.y = i * tileWidth;
+            pos = IsometricHelper.twoDToIso(pos);
+            hero.x = borderOffsetX + pos.x;
+            hero.y = borderOffsetY + pos.y;
+            //overlayContainer.addChild(hero);
+            heroCartPos.x = j * tileWidth;
+            heroCartPos.y = i * tileWidth;
+            heroTile.x = j;
+            heroTile.y = i;
+//            heroPointer = new herodot();
+            heroPointer = makeHeroPointer(0xffffff);
+            heroPointer.x = heroCartPos.x;
+            heroPointer.y = heroCartPos.y;
 
-        xpos = Math.floor(_player.x / _cellSize);
-        ypos = Math.floor(_player.y / _cellSize);
-        _grid.setStartNode(xpos, ypos);
-
-        drawGrid();
-        findPath();
-    }
-
-    /**
-     * Creates an instance of GTAStar and uses it to find a path.
-     */
-    private function findPath():void {
-        var astar:AStar = new AStar();
-        LOG.info("before astar running");
-        var find:Boolean = astar.findPath(_grid);
-        LOG.info("after astar running");
-        if (find) {
-            _path = astar.path;
-            _index = 0;
-            _line.graphics.clear();
-            _line.graphics.lineStyle(4, 0xFFFFFF, .8);
-            _line.graphics.moveTo(_player.x, _player.y);
-            addEventListener(Event.ENTER_FRAME, onEnterFrame);
         }
+//        var tile:MovieClip = new cartTile();
+        var tile:MovieClip = makeTile(0x0000ff);
+        tile.gotoAndStop(id + 1);
+        tile.x = j * tileWidth;
+        tile.y = i * tileWidth;
+        overlayContainer.addChild(tile);
     }
 
-    /**
-     * Finds the next node on the path and eases to it.
-     */
-    private function onEnterFrame(event:Event):void {
-        var targetX:Number = _path[_index].x * _cellSize + _cellSize / 2;
-        var targetY:Number = _path[_index].y * _cellSize + _cellSize / 2;
-        var dx:Number = targetX - _player.x;
-        var dy:Number = targetY - _player.y;
-        var dist:Number = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 1) {
-            _index++;
-            if (_index >= _path.length) {
-                removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+//the game loop
+    function loop(e:Event) {
+        if (key.isDown(Keyboard.UP)) {
+            dY = -1;
+        }
+        else if (key.isDown(Keyboard.DOWN)) {
+            dY = 1;
+        }
+        else {
+            dY = 0;
+        }
+        if (key.isDown(Keyboard.RIGHT)) {
+            dX = 1;
+            if (dY == 0) {
+                facing = "east";
+            }
+            else if (dY == 1) {
+                facing = "southeast";
+                dX = dY = 0.5;
+            }
+            else {
+                facing = "northeast";
+                dX = 0.5;
+                dY = -0.5;
+            }
+        }
+        else if (key.isDown(Keyboard.LEFT)) {
+            dX = -1;
+            if (dY == 0) {
+                facing = "west";
+            }
+            else if (dY == 1) {
+                facing = "southwest";
+                dY = 0.5;
+                dX = -0.5;
+            }
+            else {
+                facing = "northwest";
+                dX = dY = -0.5;
             }
         }
         else {
-            _player.x += dx * .5;
-            _player.y += dy * .5;
+            dX = 0;
+            if (dY == 0) {
+                //facing="west";
+            }
+            else if (dY == 1) {
+                facing = "south";
+            }
+            else {
+                facing = "north";
+            }
         }
-        _line.graphics.lineStyle(5, COLOR_OF_TRACE_LINE);
-        _line.graphics.lineTo(_player.x, _player.y);
+        if (dY == 0 && dX == 0) {
+//            hero.clip.gotoAndStop(facing);
+            idle = true;
+        }
+        else if (idle || currentFacing != facing) {
+            idle = false;
+            currentFacing = facing;
+//            hero.clip.gotoAndPlay(facing);
+        }
+        if (!idle && isWalkable()) {
+            heroCartPos.x += speed * dX;
+            heroCartPos.y += speed * dY;
+            heroPointer.x = heroCartPos.x;
+            heroPointer.y = heroCartPos.y;
+
+            var newPos:Point = IsometricHelper.twoDToIso(heroCartPos);
+            //collision check
+            hero.x = borderOffsetX + newPos.x;
+            hero.y = borderOffsetY + newPos.y;
+            heroTile = IsometricHelper.getTileCoordinates(heroCartPos, tileWidth);
+            depthSort();
+            //trace(heroTile);
+        }
+//        tileTxt.text = "Hero is on x: " + heroTile.x + " & y: " + heroTile.y;
+        trace("Hero is on x: " + heroTile.x + " & y: " + heroTile.y);
     }
+
+//check for collision tile
+    function isWalkable():Boolean {
+        var able:Boolean = true;
+        var newPos:Point = new Point();
+        newPos.x = heroCartPos.x + (speed * dX);
+        newPos.y = heroCartPos.y + (speed * dY);
+        switch (facing) {
+            case "north":
+                newPos.y -= heroHalfSize;
+                break;
+            case "south":
+                newPos.y += heroHalfSize;
+                break;
+            case "east":
+                newPos.x += heroHalfSize;
+                break;
+            case "west":
+                newPos.x -= heroHalfSize;
+                break;
+            case "northeast":
+                newPos.y -= heroHalfSize;
+                newPos.x += heroHalfSize;
+                break;
+            case "southeast":
+                newPos.y += heroHalfSize;
+                newPos.x += heroHalfSize;
+                break;
+            case "northwest":
+                newPos.y -= heroHalfSize;
+                newPos.x -= heroHalfSize;
+                break;
+            case "southwest":
+                newPos.y += heroHalfSize;
+                newPos.x -= heroHalfSize;
+                break;
+        }
+        newPos = IsometricHelper.getTileCoordinates(newPos, tileWidth);
+        if (levelData[newPos.y][newPos.x] == 1) {
+            able = false;
+        } else {
+            //trace("new",newPos);
+        }
+        return able;
+    }
+
+//sort depth & draw to canvas
+    function depthSort() {
+        bg.bitmapData.lock();
+        bg.bitmapData.fillRect(rect, 0xffffff);
+        var tileType:uint;
+        var mat:Matrix = new Matrix();
+        var pos:Point = new Point();
+        for (var i:uint = 0; i < levelData.length; i++) {
+            for (var j:uint = 0; j < levelData[0].length; j++) {
+                tileType = levelData[i][j];
+                //placeTile(tileType,i,j);
+
+                pos.x = j * tileWidth;
+                pos.y = i * tileWidth;
+                pos = IsometricHelper.twoDToIso(pos);
+                mat.tx = borderOffsetX + pos.x;
+                mat.ty = borderOffsetY + pos.y;
+                if (tileType == 0) {
+                    bg.bitmapData.draw(grassTile, mat);
+                } else {
+                    bg.bitmapData.draw(wallTile, mat);
+                }
+                if (heroTile.x == j && heroTile.y == i) {
+                    mat.tx = hero.x;
+                    mat.ty = hero.y;
+                    bg.bitmapData.draw(hero, mat);
+                }
+
+            }
+        }
+        bg.bitmapData.unlock();
+//add character rectangle
+    }
+
 }
 }

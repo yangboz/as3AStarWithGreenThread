@@ -4,7 +4,7 @@ import com.lookbackon.ds.aStar.AStarNode;
 /**
  * Holds a two-dimensional array of Nodes methods to manipulate them, start node and end node for finding a path.
  */
-public class Grid {
+public class Grid implements IGrid {
     private var _startNode:AStarNode;
     private var _endNode:AStarNode;
     private var _nodes:Array;

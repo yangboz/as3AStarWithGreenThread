@@ -9,8 +9,8 @@ import flash.events.MouseEvent;
  * Serves as a visual representation of a grid of nodes used in a pathfinding solution.
  */
 public class GridView extends Sprite {
-    private var _cellSize:int = 20;
-    private var _grid:Grid;
+    protected var _cellSize:int = 20;
+    protected var _grid:IGrid;
 
     /**
      * Constructor.
@@ -40,7 +40,7 @@ public class GridView extends Sprite {
     /**
      * Determines the color of a given node based on its state.
      */
-    private function getColor(node:AStarNode):uint {
+    protected function getColor(node:AStarNode):uint {
         if (!node.walkable) return 0;
         if (node == _grid.startNode) return 0x666666;
         if (node == _grid.endNode) return 0x666666;

@@ -2,7 +2,7 @@ package com.lookbackon.ds.aStar {
 public class AStar {
     private var _open:Array;
     private var _closed:Array;
-    private var _grid:Grid;
+    private var _grid:IGrid;
     private var _endNode:AStarNode;
     private var _startNode:AStarNode;
     private var _path:Array;
@@ -15,7 +15,7 @@ public class AStar {
     public function AStar() {
     }
 
-    public function findPath(grid:Grid):Boolean {
+    public function findPath(grid:IGrid):Boolean {
         _grid = grid;
         _open = new Array();
         _closed = new Array();
