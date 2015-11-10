@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f06484e-ee2f-43bd-83b9-53c6e847dc09" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IGrid.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IsometricGameGTAstar.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/lookbackon/ds/aStar/AStar.as" afterPath="$PROJECT_DIR$/src/com/lookbackon/ds/aStar/AStar.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Grid.as" afterPath="$PROJECT_DIR$/src/Grid.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GridView.as" afterPath="$PROJECT_DIR$/src/GridView.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IsometricGameAStar.as" afterPath="$PROJECT_DIR$/src/IsometricGameAStar.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IsometricGridView.as" afterPath="$PROJECT_DIR$/src/IsometricGridView.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/GTween_V2_01.swc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs/as3isolib.v1.core.swc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mx/core/ClassFactory.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/lookbackon/ds/aStar/utils/DrawingShapes.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mx/core/IFactory.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/mx/core/IMXMLObject.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/IsometricExamples.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IsometricGameGTAstar.as" afterPath="$PROJECT_DIR$/src/IsometricGameGTAstar.as" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="as3AStarWithGreenThread.iws" />
@@ -55,21 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameGTAstar.as" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GameGTAstar.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="21" selection-start-line="0" selection-start-column="0" selection-end-line="165" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IsometricGameGTAstar.as" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IsometricGameGTAstar.as" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/IsometricGameGTAstar.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16491596">
-              <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="88" column="80" selection-start-line="88" selection-start-column="80" selection-end-line="88" selection-end-column="80" />
               <folding>
                 <element signature="e#10#48#0" expanded="true" />
               </folding>
@@ -77,11 +68,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AStarNodeBoard.as" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lookbackon/ds/aStar/AStarNodeBoard.as">
+      <file leaf-file-name="IsometricExamples.as" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/IsometricExamples.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.60609245">
+              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#53#93#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="library.swf" pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/libs/as3isolib.v1.core.swc!/library.swf">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="149" column="1" selection-start-line="45" selection-start-column="0" selection-end-line="149" selection-end-column="1" />
+              <caret line="1007" column="54" selection-start-line="1007" selection-start-column="54" selection-end-line="1007" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IFactory.as" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/mx/core/IFactory.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DrawingShapes.as" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/lookbackon/ds/aStar/utils/DrawingShapes.as">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="65" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -92,26 +116,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AStar.as" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/lookbackon/ds/aStar/AStar.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IsometricGridView.as" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/IsometricGridView.as">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -191,7 +195,9 @@
         <option value="$PROJECT_DIR$/src/com/lookbackon/ds/aStar/AStar.as" />
         <option value="$PROJECT_DIR$/src/GridView.as" />
         <option value="$PROJECT_DIR$/src/IsometricGridView.as" />
+        <option value="$PROJECT_DIR$/src/com/lookbackon/ds/aStar/utils/DrawingShapes.as" />
         <option value="$PROJECT_DIR$/src/IsometricGameGTAstar.as" />
+        <option value="$PROJECT_DIR$/src/IsometricExamples.as" />
       </list>
     </option>
   </component>
@@ -460,6 +466,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="as3AStarWithGreenThread" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="as3AStarWithGreenThread" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -540,7 +564,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="GTween_V2_01.swc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="as3AStarWithGreenThread" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="as3AStarWithGreenThread" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="flexunit-core-as3-4.1.0-RC1.61-sdk4.0.0.14159.swc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="as3AStarWithGreenThread" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="as3AStarWithGreenThread" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="as3isolib.v1.core.swc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -583,6 +643,7 @@
     </key>
     <key name="CreateActionScriptClassDialog.DESTINATION_PACKAGE_RECENT_KEY">
       <recent name="" />
+      <recent name="com.lookbackon.ds.aStar.utils" />
       <recent name="com.senocular.utils" />
       <recent name="com.lookbackon.ds.isometric" />
     </key>
@@ -590,7 +651,7 @@
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Flash App.IsometricGameGTAstar">
+  <component name="RunManager" selected="Flash App.IsometricExample">
     <configuration default="false" name="IsometricGridView" type="FlashRunConfigurationType" factoryName="Flash App" temporary="true" nameIsGenerated="true">
       <option name="BCName" value="Game" />
       <option name="IOSSimulatorSdkPath" value="" />
@@ -652,6 +713,41 @@
       <option name="moduleName" value="as3AStarWithGreenThread" />
       <option name="overriddenMainClass" value="IsometricGameGTAstar" />
       <option name="overriddenOutputFileName" value="IsometricGameGTAstar.swf" />
+      <option name="overrideMainClass" value="true" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="false" name="IsometricExamples" type="FlashRunConfigurationType" factoryName="Flash App" temporary="true" nameIsGenerated="true">
+      <option name="BCName" value="Game" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/Applications/Flash Player Debugger.app" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="as3AStarWithGreenThread" />
+      <option name="overriddenMainClass" value="IsometricExamples" />
+      <option name="overriddenOutputFileName" value="IsometricExamples.swf" />
       <option name="overrideMainClass" value="true" />
       <option name="runTrusted" value="true" />
       <option name="screenDpi" value="0" />
@@ -923,6 +1019,41 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
+    <configuration default="false" name="IsometricExample" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="Game" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="Player" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="/Applications/Flash Player.app" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="as3AStarWithGreenThread" />
+      <option name="overriddenMainClass" value="IsometricExamples" />
+      <option name="overriddenOutputFileName" value="IsometricExamples.swf" />
+      <option name="overrideMainClass" value="true" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
     <configuration default="false" name="IsometricGameAStar" type="FlashRunConfigurationType" factoryName="Flash App" nameIsGenerated="true">
       <option name="BCName" value="Game" />
       <option name="IOSSimulatorSdkPath" value="" />
@@ -1042,18 +1173,21 @@
       <option name="trusted" value="true" />
       <method />
     </configuration>
-    <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="Flash App.IsometricGameAStar" />
-      <item index="1" class="java.lang.String" itemvalue="Flash App.GameGTAstar" />
-      <item index="2" class="java.lang.String" itemvalue="Flash App.GameAStar" />
-      <item index="3" class="java.lang.String" itemvalue="Flash App.IsometricGridView" />
-      <item index="4" class="java.lang.String" itemvalue="Flash App.IsometricGameGTAstar" />
-      <item index="5" class="java.lang.String" itemvalue="FlexUnit.TestRunner" />
+    <list size="8">
+      <item index="0" class="java.lang.String" itemvalue="Flash App.IsometricExample" />
+      <item index="1" class="java.lang.String" itemvalue="Flash App.IsometricGameAStar" />
+      <item index="2" class="java.lang.String" itemvalue="Flash App.GameGTAstar" />
+      <item index="3" class="java.lang.String" itemvalue="Flash App.GameAStar" />
+      <item index="4" class="java.lang.String" itemvalue="Flash App.IsometricGridView" />
+      <item index="5" class="java.lang.String" itemvalue="Flash App.IsometricGameGTAstar" />
+      <item index="6" class="java.lang.String" itemvalue="Flash App.IsometricExamples" />
+      <item index="7" class="java.lang.String" itemvalue="FlexUnit.TestRunner" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Flash App.IsometricGameGTAstar" />
-        <item index="1" class="java.lang.String" itemvalue="Flash App.IsometricGridView" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Flash App.IsometricExamples" />
+        <item index="1" class="java.lang.String" itemvalue="Flash App.IsometricGameGTAstar" />
+        <item index="2" class="java.lang.String" itemvalue="Flash App.IsometricGridView" />
       </list>
     </recent_temporary>
   </component>
@@ -1074,12 +1208,12 @@
       <workItem from="1447047089899" duration="9097000" />
       <workItem from="1447059310480" duration="1556000" />
       <workItem from="1447063015988" duration="3209000" />
-      <workItem from="1447083118750" duration="3160000" />
+      <workItem from="1447083118750" duration="5907000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24358000" />
+    <option name="totallyTimeSpent" value="27105000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1909" height="1098" extended-state="0" />
@@ -1135,37 +1269,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/lookbackon/ds/aStar/AStar.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/astar/AStarTest.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Grid.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PathfindingView.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GridView.as">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1204,6 +1307,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1219,6 +1323,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1398,6 +1503,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1421,6 +1527,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="63" column="42" selection-start-line="55" selection-start-column="0" selection-end-line="63" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1428,6 +1535,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1540,12 +1648,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/lookbackon/ds/aStar/utils/DrawingShapes.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="65" selection-start-line="40" selection-start-column="3" selection-end-line="40" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/IsometricGameGTAstar.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16491596">
-          <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="88" column="80" selection-start-line="88" selection-start-column="80" selection-end-line="88" selection-end-column="80" />
           <folding>
             <element signature="e#10#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mx/core/IFactory.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/as3isolib.v1.core.swc!/library.swf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1007" column="54" selection-start-line="1007" selection-start-column="54" selection-end-line="1007" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/IsometricExamples.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60609245">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#53#93#0" expanded="true" />
           </folding>
         </state>
       </provider>

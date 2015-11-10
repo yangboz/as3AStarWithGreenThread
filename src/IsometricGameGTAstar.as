@@ -84,10 +84,14 @@ public class IsometricGameGTAstar extends Sprite {
                 var node:AStarNode = _grid.getNode(i, j);
                 graphics.lineStyle(0);
                 graphics.beginFill(getColor(node));
-                graphics.drawRect(i * _cellSize, j * _cellSize, _cellSize, _cellSize);
-//                graphics.drawEllipse(i * _cellSize, j * _cellSize, _cellSize, _cellSize);
+//                graphics.drawRect(i * _cellSize, j * _cellSize, _cellSize, _cellSize);
+                graphics.drawEllipse(i * _cellSize, j * _cellSize, _cellSize, _cellSize);
 //                graphics.drawCircle(i * _cellSize, j * _cellSize, _cellSize / 2);
-
+//                DrawingShapes.drawStar(graphics, i * _cellSize, j * _cellSize, 4, 24, 19, 27);
+//                DrawingShapes.drawPolygon(graphics, i * _cellSize, j * _cellSize, 4, 45, 0);
+//                DrawingShapes.drawBurst(graphics, i * _cellSize, j * _cellSize, 4, 2, 2, 0);
+//                DrawingShapes.drawGear(graphics, i * _cellSize, j * _cellSize, 4);
+//                DrawingShapes.drawWedge(graphics, i * _cellSize, j * _cellSize, 45, 45);
             }
         }
     }
